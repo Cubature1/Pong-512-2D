@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bg3e7ry407xpw"]
+
+[ext_resource type="Script" uid="uid://cwt1rikc556wh" path="res://scripts/cpu_paddle.gd" id="1_74jdg"]
+[ext_resource type="Script" uid="uid://bt682o8kwhy3v" path="res://scripts/paddle_shape.gd" id="2_3c02m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fu30"]
+size = Vector2(32, 200)
+
+[node name="CPUPaddle" type="Area2D" unique_id=1147024350]
+script = ExtResource("1_74jdg")
+
+[node name="CPUCollision" type="CollisionShape2D" parent="." unique_id=1622231516]
+shape = SubResource("RectangleShape2D_8fu30")
+
+[node name="PaddleShape" type="Polygon2D" parent="." unique_id=965696186]
+polygon = PackedVector2Array(-16.00003, -96, 16.00003, -96, 16.00003, 96, -15.9999695, 96)
+uv = PackedVector2Array(-16, -71.999985, 16, -71.999985, 16, 72, -16, 72)
+script = ExtResource("2_3c02m")
