@@ -12,8 +12,3 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-#func _reset() -> void:
-	#$PlayerPaddle.set_position($PlayerStartPosition.get_position())
-	#$CPUPaddle.set_position($OpponentStartPosition.get_position())
-	#$Ball.set_position($BallStartPosition.get_position())
