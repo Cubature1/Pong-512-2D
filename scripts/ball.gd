@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 600
+@export var speed = 700
 var screen_size
 var bounce = false
 var velocity = Vector2.ZERO
@@ -15,8 +15,8 @@ func coinflip():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
-	velocity = Vector2(coinflip(),coinflip())
-	print("Ball velocity is", velocity)
+	velocity = Vector2(coinflip(),coinflip()) # Calculate starting velocity, 1 or -1 on either axis. 
+	# print("Ball velocity is", velocity)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
