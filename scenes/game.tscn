@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://btw1c534v783m"]
+
+[ext_resource type="Script" uid="uid://daoqjhwgtpcrf" path="res://scripts/game.gd" id="1_eow3j"]
+[ext_resource type="PackedScene" uid="uid://bywenvdnwntvt" path="res://scenes/game_ui.tscn" id="2_gee14"]
+[ext_resource type="PackedScene" uid="uid://cpfy2vjxseoq6" path="res://scenes/player_paddle.tscn" id="4_hve3p"]
+[ext_resource type="Script" uid="uid://b6sr5l7ujbe7l" path="res://scripts/opponent_wall_collision.gd" id="5_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://bg3e7ry407xpw" path="res://cpu_paddle.tscn" id="6_0tnpc"]
+[ext_resource type="Script" uid="uid://dm83vrdmwbgjl" path="res://scripts/player_wall_collision.gd" id="6_iotsf"]
+[ext_resource type="PackedScene" uid="uid://cc22k5t1hahu" path="res://scenes/ball.tscn" id="7_lc2xo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ke0wg"]
+normal = Vector2(0, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lj8b5"]
+b = Vector2(0, 720)
+
+[node name="Game" type="Node" unique_id=1263503561]
+script = ExtResource("1_eow3j")
+
+[node name="GameUI" parent="." unique_id=113539159 instance=ExtResource("2_gee14")]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1264300958]
+wait_time = 2.0
+one_shot = true
+
+[node name="Collisions" type="Node2D" parent="." unique_id=1734019382]
+position = Vector2(64, 360)
+
+[node name="Floor" type="Area2D" parent="Collisions" unique_id=277398722]
+position = Vector2(-64, -360)
+monitorable = false
+
+[node name="FloorCollision" type="CollisionShape2D" parent="Collisions/Floor" unique_id=534148749]
+position = Vector2(640, 720)
+shape = SubResource("WorldBoundaryShape2D_0xm2m")
+metadata/normal = Vector2(0, 1)
+
+[node name="Ceiling" type="Area2D" parent="Collisions" unique_id=680095477]
+position = Vector2(-64, -360)
+monitorable = false
+
+[node name="CeilingCollision" type="CollisionShape2D" parent="Collisions/Ceiling" unique_id=848115136]
+position = Vector2(640, 0)
+shape = SubResource("WorldBoundaryShape2D_ke0wg")
+metadata/normal = Vector2(0, 1)
+
+[node name="PlayerPaddle" parent="." unique_id=1795742984 instance=ExtResource("4_hve3p")]
+position = Vector2(64, 360)
+monitorable = false
+mousecontrol = true
+
+[node name="Bounds" type="Node2D" parent="." unique_id=1283682458]
+
+[node name="PlayerWallCollision" type="Area2D" parent="Bounds" unique_id=929208467]
+script = ExtResource("6_iotsf")
+
+[node name="PlayerSideWall" type="Polygon2D" parent="Bounds/PlayerWallCollision" unique_id=643546807]
+polygon = PackedVector2Array(0, 0, 0, 720, 8, 720, 8, 0)
+uv = PackedVector2Array(-192, -96, -192, -32, -167.99997, -32, -160, -96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/PlayerWallCollision" unique_id=2124752474]
+shape = SubResource("SegmentShape2D_lj8b5")
+
+[node name="OpponentWallCollision" type="Area2D" parent="Bounds" unique_id=1072312560]
+monitorable = false
+script = ExtResource("5_mfdv2")
+
+[node name="OpponentSideWall" type="Polygon2D" parent="Bounds/OpponentWallCollision" unique_id=1878440616]
+position = Vector2(1272, 0)
+polygon = PackedVector2Array(0, 0, 0, 720, 8, 720, 8, 0)
+uv = PackedVector2Array(-192, -96, -192, -32, -167.99997, -32, -160, -96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/OpponentWallCollision" unique_id=1662580557]
+position = Vector2(1280, 0)
+shape = SubResource("SegmentShape2D_lj8b5")
+
+[node name="BallStartPosition" type="Marker2D" parent="." unique_id=198549923]
+position = Vector2(640, 360)
+
+[node name="PlayerStartPosition" type="Marker2D" parent="." unique_id=483235797]
+position = Vector2(64, 360)
+
+[node name="CPUStartPosition" type="Marker2D" parent="." unique_id=2139608782]
+position = Vector2(1216, 360)
+
+[node name="Ball" parent="." unique_id=481297755 instance=ExtResource("7_lc2xo")]
+
+[node name="CPUPaddle" parent="." unique_id=1147024350 instance=ExtResource("6_0tnpc")]
+
+[connection signal="area_entered" from="Collisions/Floor" to="Ball" method="_on_vertical_bound_hit"]
+[connection signal="area_entered" from="Collisions/Ceiling" to="Ball" method="_on_vertical_bound_hit"]
+[connection signal="area_entered" from="PlayerPaddle" to="Ball" method="_on_player_paddle_hit"]
+[connection signal="area_entered" from="Bounds/PlayerWallCollision" to="Bounds/PlayerWallCollision" method="_on_area_entered"]
+[connection signal="area_entered" from="Bounds/OpponentWallCollision" to="Bounds/OpponentWallCollision" method="_on_area_entered"]

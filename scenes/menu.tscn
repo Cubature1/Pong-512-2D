@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://f34k8vdhb7jb"]
+
+[ext_resource type="Script" uid="uid://xm6kfhhjiq3r" path="res://scripts/margin_container.gd" id="1_mhnvy"]
+[ext_resource type="FontFile" uid="uid://rv123xujf7li" path="res://fonts/VCR_OSD_MONO_1.001.ttf" id="2_4ytvr"]
+[ext_resource type="Script" uid="uid://6q1is5dl5oya" path="res://scripts/title_version_number.gd" id="3_g3eks"]
+[ext_resource type="Script" uid="uid://cps367e7ijk14" path="res://scripts/play_button.gd" id="4_4ytvr"]
+[ext_resource type="Script" uid="uid://dom0jyicggcjt" path="res://scripts/exit_button.gd" id="4_v86rl"]
+
+[sub_resource type="Theme" id="Theme_ke0wg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1ek4"]
+resource_name = "VCR OSD Mono Title"
+font = ExtResource("2_4ytvr")
+font_size = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_ke0wg"]
+font = ExtResource("2_4ytvr")
+
+[sub_resource type="Theme" id="Theme_mduoy"]
+default_font = ExtResource("2_4ytvr")
+default_font_size = 32
+
+[node name="MainMenu" type="Control" unique_id=1704707787]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=782258435]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ke0wg")
+script = ExtResource("1_mhnvy")
+
+[node name="TitleScreen" type="Control" parent="Margin" unique_id=1452040851]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/TitleScreen" unique_id=1924237994]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_right = 360.0
+offset_bottom = 132.0
+grow_horizontal = 2
+text = "Pong 512"
+label_settings = SubResource("LabelSettings_f1ek4")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TitleVersionNumber" type="Label" parent="Margin/TitleScreen/Title" unique_id=1009920990]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -5.0
+offset_right = 90.0
+offset_bottom = 18.0
+grow_vertical = 0
+text = "v. 0.0.0"
+label_settings = SubResource("LabelSettings_ke0wg")
+script = ExtResource("3_g3eks")
+
+[node name="Buttons" type="VBoxContainer" parent="Margin/TitleScreen" unique_id=1960669843]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="Margin/TitleScreen/Buttons" unique_id=1393352663]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme = SubResource("Theme_mduoy")
+theme_type_variation = &"ButtonNormal"
+text = "PLAY"
+script = ExtResource("4_4ytvr")
+
+[node name="SettingsButton" type="Button" parent="Margin/TitleScreen/Buttons" unique_id=1920531797]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme = SubResource("Theme_mduoy")
+theme_type_variation = &"ButtonNormal"
+text = "SETTINGS"
+
+[node name="ExitButton" type="Button" parent="Margin/TitleScreen/Buttons" unique_id=1539286852]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme = SubResource("Theme_mduoy")
+theme_type_variation = &"ButtonNormal"
+text = "EXIT"
+script = ExtResource("4_v86rl")
+
+[connection signal="pressed" from="Margin/TitleScreen/Buttons/PlayButton" to="Margin/TitleScreen/Buttons/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="Margin/TitleScreen/Buttons/ExitButton" to="Margin/TitleScreen/Buttons/ExitButton" method="_on_pressed"]
