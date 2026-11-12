@@ -14,7 +14,8 @@ func _ready() -> void:
 		velocity.x = 1.
 	else:
 		velocity.x = -1.
-	velocity.y = (randf() - 0.5) / 2
+	#velocity.y = (randf() - 0.5) / 2
+	velocity.y = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,12 +28,9 @@ func _process(delta: float) -> void:
 
 func _on_vertical_bound_hit(area: Area2D) -> void:
 	velocity = velocity * Vector2(1,-1)
-	#if 'Ball' in area:
-	#	velocity = velocity * Vector2(1,-1)
-	#	print("Hit! Ceiling / Floor")
 
 func _on_player_paddle_hit(area: Area2D) -> void:
 	velocity = velocity * Vector2(-1,1)
-	#if 'Ball' in area:
-	#	velocity = velocity * Vector2(1,-1)
-	#	print("Hit! Paddle")
+
+func _on_cpu_paddle_hit(area: Area2D) -> void:
+	velocity = velocity * Vector2(-1,1)

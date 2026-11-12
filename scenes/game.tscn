@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bywenvdnwntvt" path="res://scenes/game_ui.tscn" id="2_gee14"]
 [ext_resource type="PackedScene" uid="uid://cpfy2vjxseoq6" path="res://scenes/player_paddle.tscn" id="4_hve3p"]
 [ext_resource type="Script" uid="uid://b6sr5l7ujbe7l" path="res://scripts/opponent_wall_collision.gd" id="5_mfdv2"]
-[ext_resource type="PackedScene" uid="uid://bg3e7ry407xpw" path="res://cpu_paddle.tscn" id="6_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://bg3e7ry407xpw" path="res://scenes/cpu_paddle.tscn" id="6_0tnpc"]
 [ext_resource type="Script" uid="uid://dm83vrdmwbgjl" path="res://scripts/player_wall_collision.gd" id="6_iotsf"]
 [ext_resource type="PackedScene" uid="uid://cc22k5t1hahu" path="res://scenes/ball.tscn" id="7_lc2xo"]
 
@@ -94,3 +94,4 @@ position = Vector2(1216, 360)
 [connection signal="area_entered" from="PlayerPaddle" to="Ball" method="_on_player_paddle_hit"]
 [connection signal="area_entered" from="Bounds/PlayerWallCollision" to="Bounds/PlayerWallCollision" method="_on_area_entered"]
 [connection signal="area_entered" from="Bounds/OpponentWallCollision" to="Bounds/OpponentWallCollision" method="_on_area_entered"]
+[connection signal="area_entered" from="CPUPaddle" to="Ball" method="_on_cpu_paddle_hit"]
