@@ -1,11 +1,14 @@
 extends Area2D
 
-@export var speed = 700
-var screen_size
-var bounce = false
-var velocity = Vector2.ZERO
 
-func coinflip():
+## The ball's initial speed. Default 700.
+@export var speed: int = 700 
+
+var screen_size: Vector2
+var bounce: bool = false # To be removed
+var velocity: Vector2 = Vector2.ZERO
+
+func coinflip(): # Returns 1 or -1, to determine the ball's initial velocity.
 	var coin = randi() % 2
 	if coin:
 		return 1
