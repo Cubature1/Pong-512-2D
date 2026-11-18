@@ -1,12 +1,14 @@
 extends Node
 
 #region Variables
-var paddle_height = 88
-var paddle_width = 16
+var paddle_height: int = 88
+var paddle_width: int = 16
+var paddle_speed: int = 700 # Base velocity
 
-var player_score
-var cpu_score
+var player_score: int
+var cpu_score: int
 #endregion
+
 
 #region Functions
 # randint is not in use but I am keeping it just in case.
