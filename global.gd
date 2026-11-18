@@ -1,9 +1,13 @@
 extends Node
 
+
 #region Variables
+## Paddle height in pixels (relative)
 var paddle_height: int = 88
+## Paddle width in pixels (relative)
 var paddle_width: int = 16
-var paddle_speed: int = 700 # Base velocity
+## Paddle speed
+var paddle_speed: int = 400 # Base velocity
 
 var player_score: int
 var cpu_score: int
@@ -12,8 +16,9 @@ var cpu_score: int
 
 #region Functions
 # randint is not in use but I am keeping it just in case.
-func randint(min: int, max: int) -> int: # Returns a value between min and max, inclusive. 
-	return (randi() % max + 1) + min
+## Returns a value between min and max, inclusive.
+func randint(min: int, max: int) -> int:  
+	return (randi() % (max + 1)) + min
 
 func scene(target): # Scene change function
 	var scene_path
