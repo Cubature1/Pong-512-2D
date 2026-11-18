@@ -21,7 +21,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var velocity: Vector2 = Vector2.ZERO
-	speed = Global.speed * .8
+	speed = Global.speed * .5
 	ball_position = ball.get_position()
 	if ball_position.y > position.y:
 		velocity.y += 1
