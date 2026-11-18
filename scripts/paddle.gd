@@ -1,12 +1,11 @@
 extends Area2D
 
-@export var mousecontrol = false
 
 var screen_size
 
 var paddle_height = Global.paddle_height
 var paddle_width = Global.paddle_width
-
+var speed = Global.paddle_speed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

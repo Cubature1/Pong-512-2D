@@ -1,10 +1,11 @@
 extends Area2D
 
-@export var speed = 5
+
 var screen_size 
 
 var paddle_height = Global.paddle_height
 var paddle_width = Global.paddle_width
+var speed = Global.paddle_speed
 
 @onready var ball = $"../Ball"
 var ball_position
@@ -19,6 +20,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var velocity: Vector2 = Vector2.ZERO
 	ball_position = ball.get_position()
-	position.y = position.lerp(ball_position, (delta * speed) * pow(ball.global_position.x / 1280, 0.152003)).y
+	
+	
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+	position += velocity * delta
 	position = position.clamp(Vector2(paddle_width,paddle_height), screen_size - Vector2(paddle_width,paddle_height))
