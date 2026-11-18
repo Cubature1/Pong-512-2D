@@ -7,7 +7,8 @@ var paddle_height: int = 88
 ## Paddle width in pixels (relative)
 var paddle_width: int = 16
 ## Paddle speed
-var paddle_speed: int = 400 # Base velocity
+var base_speed: int = 500 # Base speed
+var speed: int = base_speed
 
 var player_score: int
 var cpu_score: int

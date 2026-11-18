@@ -87,6 +87,7 @@ position = Vector2(1216, 360)
 [node name="Ball" parent="." unique_id=481297755 instance=ExtResource("7_lc2xo")]
 
 [node name="CPUPaddle" parent="." unique_id=1147024350 instance=ExtResource("6_0tnpc")]
+monitorable = false
 
 [connection signal="area_entered" from="Collisions/Floor" to="Ball" method="_on_vertical_bound_hit"]
 [connection signal="area_entered" from="Collisions/Ceiling" to="Ball" method="_on_vertical_bound_hit"]

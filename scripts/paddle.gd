@@ -5,7 +5,7 @@ var screen_size
 
 var paddle_height = Global.paddle_height
 var paddle_width = Global.paddle_width
-var speed = Global.paddle_speed
+var speed = Global.speed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +17,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta) -> void:
 	var velocity = Vector2.ZERO
+	speed = Global.speed * .8
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 	if Input.is_action_pressed("move_down"):

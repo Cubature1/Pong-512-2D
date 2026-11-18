@@ -5,7 +5,7 @@ var screen_size
 
 var paddle_height = Global.paddle_height
 var paddle_width = Global.paddle_width
-var speed = Global.paddle_speed
+var speed = Global.speed
 
 @onready var ball = $"../Ball"
 var ball_position
@@ -21,9 +21,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var velocity: Vector2 = Vector2.ZERO
+	speed = Global.speed * .8
 	ball_position = ball.get_position()
-	
-	
+	if ball_position.y > position.y:
+		velocity.y += 1
+	elif ball_position.y < position.y:
+		velocity.y -= 1
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 	position += velocity * delta
